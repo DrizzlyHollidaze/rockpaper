@@ -1,0 +1,1 @@
+let playersChoice = prompt('Rock Paper or Scirros')
