@@ -69,7 +69,13 @@ function playRound(playersSelection, computerSelection) {
         }
     }
 }
-
+function garbageCollect(str) {
+    if (str != 'rock' || str != 'paper' || str != 'scissors') {
+        str = prompt('Please enter a valid choice of rock paper or scissors!');
+        playersSelection = playersSelection.toLowerCase();
+    }
+    return str;
+}
 function game() {
     compNum = randomNumber(1, 3);
     computerSelection = getComputerChoice(compNum);
