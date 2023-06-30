@@ -27,6 +27,11 @@ function getComputerChoice(num) {
     return computerSelection;
 }
 
+ function getPlayersChoice() {
+    playersSelection = prompt('Rock, paper, or scissors?');
+    playersSelection = playersSelection.toLowerCase();
+    return playersSelection;
+ }
 
 function playRound(playersSelection, computerSelection) {
     if (playersSelection === 'rock') {
@@ -51,7 +56,7 @@ function playRound(playersSelection, computerSelection) {
             result = `It's a tie!`;
         }
         else {
-            result = `Scissors Beats rock! You lose!`;
+            result = `Scissors Beats paper! You lose!`;
             compScore = compScore + 1;
         }
     }
@@ -68,6 +73,7 @@ function playRound(playersSelection, computerSelection) {
             result = `It's a tie!`;
         }
     }
+    alert(result);
 }
 function garbageCollect(str) {
     if (str != 'rock' || str != 'paper' || str != 'scissors') {
@@ -79,8 +85,7 @@ function garbageCollect(str) {
 function game() {
     compNum = randomNumber(1, 3);
     computerSelection = getComputerChoice(compNum);
-    playersSelection = prompt('Rock, paper, or scissors?');
-    playersSelection = playersSelection.toLowerCase();
+    playersSelection =  getPlayersChoice();
     playRound(playersSelection, computerSelection); // round 1
     compNum = randomNumber(1, 3);
     computerSelection = getComputerChoice(compNum);
