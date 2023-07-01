@@ -5,6 +5,7 @@ let result;
 let compScore = 0;
 let playerScore = 0;
 let numRounds;
+const rps = ['rock', 'paper', 'scissors'];
 
 
 function randomNumber(min, max) {
@@ -13,25 +14,10 @@ function randomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1));
 }
 
-
-function getComputerChoice(num) {
-    switch (num) {
-        case 1:
-            computerSelection = 'rock';
-            break;
-        case 2:
-            computerSelection = 'paper';
-            break;
-        case 3: 
-            computerSelection = 'scissors';
-            break;
-    }
-    return computerSelection;
-}
-
  function getPlayersChoice() {
     playersSelection = prompt('Rock, paper, or scissors?');
     playersSelection = playersSelection.toLowerCase();
+    alert(`You chose ${playersSelection}!`);
     return playersSelection;
  }
 
@@ -55,7 +41,7 @@ function playRound(playersSelection, computerSelection) {
             playerScore = playerScore + 1;
         }
         else if (computerSelection === 'paper') {
-            result = `Computer chose paper! It's a tier!`;
+            result = `Computer chose paper! It's a tie!`;
         }
         else {
             result = `Computer chose scissors you lose!`;
@@ -75,20 +61,14 @@ function playRound(playersSelection, computerSelection) {
             result = `Computer chose rock! It's as tie!`;
         }
     }
-    alert(result);
+    alert(`${result} The score is now user ${playerScore} PC ${compScore}`);
 }
-function garbageCollect(str) {
-    if (str != 'rock' || str != 'paper' || str != 'scissors') {
-        str = prompt('Please enter a valid choice of rock paper or scissors!');
-        playersSelection = playersSelection.toLowerCase(); //test
-    }
-    return str;
-}
+
 function game() {
     numRounds = prompt('How many rounds would you like to play?');
-    for (let i = 1; i <= numRounds; i ++) {
-        compNum = randomNumber(1, 3);
-        computerSelection = getComputerChoice(compNum);
+    for (let i = 1; i <= numRounds; i++) {
+        compNum = randomNumber(0, 2);
+        computerSelection = rps[compNum];
         playersSelection =  getPlayersChoice();
         playRound(playersSelection, computerSelection);
     }
