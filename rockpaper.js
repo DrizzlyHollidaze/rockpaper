@@ -4,7 +4,10 @@ let computerSelection;
 let result;
 let compScore = 0;
 let playerScore = 0;
-let numRounds;
+let numRounds = 1;
+let finalResult;
+let roundResult;
+
 const rps = ['rock', 'paper', 'scissors'];
 
 
@@ -67,17 +70,75 @@ function playRound(playersSelection, computerSelection) {
 function game() {
     compNum = randomNumber(0, 2);
     computerSelection = rps[compNum];
-    playersSelection =  getPlayersChoice();
     playRound(playersSelection, computerSelection);
+    numRounds++;
+    if (numRounds == 5) {
+        whoWon();
+    }
 }
 function whoWon(playerScore, compScore) {
     if (playerScore >  compScore) {
         alert(`You win! Final Score is User:${playerScore} PC:${compScore}`);
     }
     else if (playerScore === compScore) {
-    alert(`It's a tie! Final Score is User:${playerScore} PC:${compScore}`);
+        alert(`It's a tie! Final Score is User:${playerScore} PC:${compScore}`);
     }
     else {
         alert(`You lose! Final Score is User:${playerScore} PC:${compScore}`);
     }
+}
+
+const buttonWrapper = document.querySelector('#buttonWrapper'); //declaring buttons and some html elements for the game 
+const buttonStart = document.createElement('button');
+const buttonRock = document.createElement('button');
+const buttonPaper = document.createElement('button');
+const buttonSicssors = document.createElement('button');
+const howMany = document.createElement('input');
+const buttonsPara = document.createElement('p');
+const buttonNewgame = document.createElement('button');
+
+
+buttonStart.innerText= 'Start';
+buttonRock.innerText = 'Rock';
+buttonPaper.innerText = 'Paper';
+buttonSicssors.innerText = 'Scissors';
+buttonsPara.innerText = 'Press start to play!';
+
+buttonWrapper.appendChild(buttonStart);
+
+buttonStart.addEventListener('click', function() {
+    start();
+});
+buttonRock.addEventListener('click', function() {
+
+    playersSelection = 'rock';
+    game();
+});
+buttonPaper.addEventListener('click', function() {
+
+    playersSelection = 'paper';
+    game();
+});
+buttonSicssors.addEventListener('click', function() {
+  
+    playersSelection = 'sicssors';
+    game();
+});
+
+function start() {
+    buttonStart.remove();
+    console.log('click');
+    buttonWrapper.appendChild(buttonRock);
+    buttonWrapper.appendChild(buttonPaper);
+    buttonWrapper.appendChild(buttonSicssors);
+    playerScore = 0;
+    compScore = 0;
+}
+
+function gameOver() {
+    buttonRock.remove();
+    buttonPaper.remove();
+    buttonSicssors.remove();
+    buttonWrapper.appendChild(buttonNewgame);
+    buttonsPara.innerText(`Game Over! Press Start to start a new game!`);
 }
