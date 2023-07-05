@@ -65,13 +65,10 @@ function playRound(playersSelection, computerSelection) {
 }
 
 function game() {
-    numRounds = prompt('How many rounds would you like to play?');
-    for (let i = 1; i <= numRounds; i++) {
-        compNum = randomNumber(0, 2);
-        computerSelection = rps[compNum];
-        playersSelection =  getPlayersChoice();
-        playRound(playersSelection, computerSelection);
-    }
+    compNum = randomNumber(0, 2);
+    computerSelection = rps[compNum];
+    playersSelection =  getPlayersChoice();
+    playRound(playersSelection, computerSelection);
 }
 function whoWon(playerScore, compScore) {
     if (playerScore >  compScore) {
@@ -84,5 +81,3 @@ function whoWon(playerScore, compScore) {
         alert(`You lose! Final Score is User:${playerScore} PC:${compScore}`);
     }
 }
-game();
-whoWon(playerScore, compScore);
