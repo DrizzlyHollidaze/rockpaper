@@ -4,7 +4,7 @@ let computerSelection;
 let result;
 let compScore = 0;
 let playerScore = 0;
-let numRounds = 1;
+let numRounds;
 let finalResult;
 let roundResult;
 
@@ -65,6 +65,7 @@ function playRound(playersSelection, computerSelection) {
         }
     }
     alert(`${result} The score is now user ${playerScore} PC ${compScore}`);
+    scorePara.textContent = `The score is Human:${playerScore} CPU:${compScore}`;
 }
 
 function game() {
@@ -73,18 +74,19 @@ function game() {
     playRound(playersSelection, computerSelection);
     numRounds++;
     if (numRounds == 5) {
-        whoWon();
+        whoWon(playerScore, compScore);
+        gameOver();
     }
 }
 function whoWon(playerScore, compScore) {
     if (playerScore >  compScore) {
-        alert(`You win! Final Score is User:${playerScore} PC:${compScore}`);
+        scorePara.textContent = `You win! Final Score is User:${playerScore} PC:${compScore}`;
     }
     else if (playerScore === compScore) {
-        alert(`It's a tie! Final Score is User:${playerScore} PC:${compScore}`);
+        scorePara.textContent = `It's a tie! Final Score is User:${playerScore} PC:${compScore}`;
     }
     else {
-        alert(`You lose! Final Score is User:${playerScore} PC:${compScore}`);
+        scorePara.textContent = `You lose! Final Score is User:${playerScore} PC:${compScore}`;
     }
 }
 
@@ -96,15 +98,21 @@ const buttonSicssors = document.createElement('button');
 const howMany = document.createElement('input');
 const buttonsPara = document.createElement('p');
 const buttonNewgame = document.createElement('button');
-
+const scorePara = document.createElement('p');
+const scoreWrapper = document.querySelector('#score');
 
 buttonStart.innerText= 'Start';
 buttonRock.innerText = 'Rock';
 buttonPaper.innerText = 'Paper';
 buttonSicssors.innerText = 'Scissors';
 buttonsPara.innerText = 'Press start to play!';
+scorePara.classList.add('theScore');
+
 
 buttonWrapper.appendChild(buttonStart);
+scoreWrapper.appendChild(scorePara);
+
+
 
 buttonStart.addEventListener('click', function() {
     start();
@@ -133,12 +141,14 @@ function start() {
     buttonWrapper.appendChild(buttonSicssors);
     playerScore = 0;
     compScore = 0;
+    numRounds = 1;
+    scorePara.textContent = `The score is Human:${playerScore} CPU:${compScore}`;
+    scoreWrapper.appendChild(scorePara);
 }
 
 function gameOver() {
     buttonRock.remove();
     buttonPaper.remove();
     buttonSicssors.remove();
-    buttonWrapper.appendChild(buttonNewgame);
-    buttonsPara.innerText(`Game Over! Press Start to start a new game!`);
+    buttonWrapper.appendChild(buttonStart);
 }
