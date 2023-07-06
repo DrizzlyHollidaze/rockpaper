@@ -64,7 +64,7 @@ function playRound(playersSelection, computerSelection) {
             result = `Computer chose rock! It's as tie!`;
         }
     }
-    scorePara.textContent = `The score is Human:${playerScore} CPU:${compScore}`;
+    scorePara.textContent = `The score is Human:${playerScore} CPU:${compScore}`; // should calculate who won a round
 }
 
 function game() {
