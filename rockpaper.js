@@ -136,7 +136,7 @@ buttonPaper.addEventListener('click', function() {
 });
 buttonSicssors.addEventListener('click', function() {
   
-    playersSelection = 'sicssors';
+    playersSelection = 'scissors';
     game();
 });
 
