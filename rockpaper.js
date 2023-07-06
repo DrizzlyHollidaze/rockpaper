@@ -64,13 +64,14 @@ function playRound(playersSelection, computerSelection) {
             result = `Computer chose rock! It's as tie!`;
         }
     }
-    alert(`${result} The score is now user ${playerScore} PC ${compScore}`);
     scorePara.textContent = `The score is Human:${playerScore} CPU:${compScore}`;
 }
 
 function game() {
     compNum = randomNumber(0, 2);
     computerSelection = rps[compNum];
+    paraPlayerchoice.textContent = playersSelection;
+    paraCompchoice.textContent = computerSelection;
     playRound(playersSelection, computerSelection);
     numRounds++;
     if (numRounds == 5) {
@@ -100,6 +101,10 @@ const buttonsPara = document.createElement('p');
 const buttonNewgame = document.createElement('button');
 const scorePara = document.createElement('p');
 const scoreWrapper = document.querySelector('#score');
+const paraPlayerchoice = document.createElement('p');
+const paraCompchoice = document.createElement('p');
+const divPlayerchoice = document.querySelector('#playerSide');
+const divCompchoice = document.querySelector('#cpuSide');
 
 buttonStart.innerText= 'Start';
 buttonRock.innerText = 'Rock';
@@ -111,7 +116,9 @@ scorePara.classList.add('theScore');
 
 buttonWrapper.appendChild(buttonStart);
 scoreWrapper.appendChild(scorePara);
-
+divPlayerchoice.appendChild(paraPlayerchoice);
+divCompchoice.appendChild(paraCompchoice);
+scorePara.textContent = 'Press Start to play!'
 
 
 buttonStart.addEventListener('click', function() {
